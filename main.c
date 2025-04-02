@@ -1,5 +1,26 @@
 #include "philo.h"
 
+int all_eaten(t_data *data)
+{
+    int i;
+
+    for (i = 0; i < data->number_of_philosophers; i++)
+    {
+        if (data->times_must_eat == -1)
+        {
+            return (0);
+        }
+        else if (data->times_must_eat > 0)
+        {
+            if (data->philo[i].times_eaten < data->times_must_eat)
+            {
+                return (0);
+            }
+        }
+    }
+    return (1);
+}
+
 void clean_forks(t_philo *philo)
 {
     pthread_mutex_unlock(&philo->data->forks[philo->philo_id]);
@@ -20,7 +41,6 @@ void philo_sleep(t_philo *philo)
     usleep(philo->data->time_to_sleep * 1000);
 }
 
-
 void eat(t_philo *philo)
 {
     printf("%ld %d is eating\n", get_time(), philo->philo_id);
@@ -36,12 +56,16 @@ void *philo_check(void *arg)
 
     while (1)
     {
-
         for (int i = 0; i < data->number_of_philosophers; i++)
         {
             if (get_time() - data->philo[i].last_meal_time > data->time_to_die)
             {
                 printf("%ld %d died-------------------------------|sss>\n", get_time(), data->philo[i].philo_id);
+                pthread_mutex_unlock(&data->some_one_died_mutex);
+                return NULL;
+            }
+            if (all_eaten(data))
+            {
                 pthread_mutex_unlock(&data->some_one_died_mutex);
                 return NULL;
             }
@@ -56,6 +80,11 @@ void *philo_routine(void *arg)
     t_philo *philo = (t_philo *)arg;
     while (1)
     {
+        if (philo->data->times_must_eat != -1 && philo->times_eaten >= philo->data->times_must_eat)
+        {
+            philo->finished = 1;
+            break;
+        }
         take_forks(philo);
         eat(philo);
         clean_forks(philo);
@@ -64,7 +93,6 @@ void *philo_routine(void *arg)
     }
     return NULL;
 }
-
 
 int start_threads(t_data *data)
 {
@@ -76,6 +104,7 @@ int start_threads(t_data *data)
         printf("Error\n");
         return (1);
     }
+    pthread_detach(check_thread);
     for (i = 0; i < data->number_of_philosophers; i++)
     {
         if (pthread_create(&data->philo[i].thread, NULL, philo_routine, &data->philo[i]))

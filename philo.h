@@ -11,6 +11,7 @@
 typedef struct s_philo{
 	int	philo_id;
 	int times_eaten;
+	int finished;
 	long last_meal_time;
 	long will_die_time;
 	pthread_t thread;
