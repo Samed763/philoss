@@ -1,10 +1,10 @@
 #include "philo.h"
 
-int	ft_atoi(const char *str)
+int ft_atoi(const char *str)
 {
-	int	i;
-	int	sign;
-	int	result;
+	int i;
+	int sign;
+	int result;
 
 	i = 0;
 	sign = 1;
@@ -18,7 +18,7 @@ int	ft_atoi(const char *str)
 	}
 	else if (str[i] == '+')
 		i++;
-	
+
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		if (!(str[i] >= '0' && str[i] <= '9'))
@@ -31,7 +31,7 @@ int	ft_atoi(const char *str)
 
 long get_time(void)
 {
-	static struct timeval	tv;
+	static struct timeval tv;
 
 	gettimeofday(&tv, NULL);
 	return ((tv.tv_sec * (long)1000) + (tv.tv_usec / 1000));
@@ -39,21 +39,23 @@ long get_time(void)
 
 int all_eaten(t_data *data)
 {
-    int i;
+	int i = 0;
 
-    for (i = 0; i < data->number_of_philosophers; i++)
-    {
-        if (data->times_must_eat == -1)
-        {
-            return (0);
-        }
-        else if (data->times_must_eat > 0)
-        {
-            if (data->philo[i].times_eaten < data->times_must_eat)
-            {
-                return (0);
-            }
-        }
-    }
-    return (1);
+	while (i < data->number_of_philosophers)
+	{
+		if (data->times_must_eat == -1)
+		{
+			return (0);
+		}
+		else if (data->times_must_eat > 0)
+		{
+			if (data->philo[i].times_eaten < data->times_must_eat)
+			{
+				return (0);
+			}
+		}
+		i++;
+	}
+
+	return (1);
 }

@@ -2,16 +2,17 @@
 
 void *philo_check(void *arg)
 {
+    int i = 0;
     t_data *data = (t_data *)arg;
     pthread_mutex_lock(&data->some_one_died_mutex);
 
     while (1)
     {
-        for (int i = 0; i < data->number_of_philosophers; i++)
+        while (i < data->number_of_philosophers)
         {
             if (get_time() - data->philo[i].last_meal_time > data->time_to_die)
             {
-                printf("%ld %d died-------------------------------|sss>\n", get_time(), data->philo[i].philo_id);
+                printf("%ld %d died-------------------------------|sss>\n", get_time() - data->start_time, data->philo[i].philo_id);
                 pthread_mutex_unlock(&data->some_one_died_mutex);
                 return NULL;
             }
@@ -20,6 +21,7 @@ void *philo_check(void *arg)
                 pthread_mutex_unlock(&data->some_one_died_mutex);
                 return NULL;
             }
+            i++;
         }
         usleep(100);
     }
@@ -40,7 +42,7 @@ void *philo_routine(void *arg)
         eat(philo);
         clean_forks(philo);
         philo_sleep(philo);
-        printf("%ld %d is thinking\n", get_time(), philo->philo_id);
+        printf("%ld %d is thinking\n", get_time() - philo->data->start_time, philo->philo_id);
     }
     return NULL;
 }
@@ -48,6 +50,7 @@ void *philo_routine(void *arg)
 int start_threads(t_data *data)
 {
     int i;
+
     i = 0;
     pthread_t check_thread;
     if (pthread_create(&check_thread, NULL, philo_check, data))
@@ -67,23 +70,13 @@ int start_threads(t_data *data)
         pthread_detach(data->philo[i].thread);
         i++;
     }
-    
-    for (i = 0; i < data->number_of_philosophers; i++)
-    {
-        if (pthread_create(&data->philo[i].thread, NULL, philo_routine, &data->philo[i]))
-        {
-            printf("Error\n");
-            return (1);
-        }
-        usleep(100);
-        pthread_detach(data->philo[i].thread);
-    }
 
     return (0);
 }
 
 void to_do_list(int argc, char *argv[], t_data *data)
 {
+    int i = 0;
     if (check_and_insert(argc, argv, data))
     {
         printf("Error\n");
@@ -96,16 +89,18 @@ void to_do_list(int argc, char *argv[], t_data *data)
         printf("Error\n");
         return;
     }
-    for (int i = 0; i < data->number_of_philosophers; i++)
+    while (i < data->number_of_philosophers)
     {
         pthread_mutex_init(&data->forks[i], NULL);
         data->philo[i].philo_id = i;
         data->philo[i].data = data;
         data->philo[i].times_eaten = 0;
         data->philo[i].last_meal_time = get_time();
+        i++;
     }
     pthread_mutex_init(&data->some_one_died_mutex, NULL);
     pthread_mutex_init(&data->mutex, NULL);
+    data->start_time = get_time();
 }
 
 int main(int argc, char *argv[])
