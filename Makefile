@@ -2,7 +2,7 @@ NAME = philo
 SRC = main.c utils.c control_and_insert.c 
 OBJ = $(SRC:.c=.o)
 
-all	: $(NAME) clean
+all	: $(NAME)
 
 $(NAME)	: $(OBJ)
 	gcc -Wall -Wextra -Werror -g -pthread -o $(NAME) $(OBJ)

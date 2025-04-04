@@ -35,8 +35,11 @@ int check_and_insert(int argc , char **argv,t_data *data);
 int	ft_atoi(const char *str);
 void *philosopher(void *arg);
 
-void create_thread(t_data *data);
-void join_thread(t_data *data);
+void clean_forks(t_philo *philo);
+void take_forks(t_philo *philo);
+void philo_sleep(t_philo *philo);
+void eat(t_philo *philo);
+int all_eaten(t_data *data);
 
 long get_time(void);
 

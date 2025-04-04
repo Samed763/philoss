@@ -36,3 +36,24 @@ long get_time(void)
 	gettimeofday(&tv, NULL);
 	return ((tv.tv_sec * (long)1000) + (tv.tv_usec / 1000));
 }
+
+int all_eaten(t_data *data)
+{
+    int i;
+
+    for (i = 0; i < data->number_of_philosophers; i++)
+    {
+        if (data->times_must_eat == -1)
+        {
+            return (0);
+        }
+        else if (data->times_must_eat > 0)
+        {
+            if (data->philo[i].times_eaten < data->times_must_eat)
+            {
+                return (0);
+            }
+        }
+    }
+    return (1);
+}
