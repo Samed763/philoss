@@ -1,31 +1,70 @@
 #include "philo.h"
+void join_threads(t_data *data)
+{
+    int i;
+
+    i = 0;
+    while (i < data->number_of_philosophers)
+    {
+        // Eğer thread detach edilmemişse, pthread_join ile beklenebilir
+        if (pthread_join(data->philo[i].thread, NULL) == 0)
+        {
+            printf("Thread %d joined successfully.\n", i);
+        }
+        else
+        {
+            printf("Thread %d is detached or already finished.\n", i);
+        }
+        i++;
+    }
+}
+void clear_malloc(t_data *data)
+{
+    int i;
+
+    i = 0;
+    if (&data->some_one_died_mutex)
+        pthread_mutex_destroy(&data->some_one_died_mutex);
+    while (i < data->number_of_philosophers)
+    {
+        pthread_mutex_destroy(&data->forks[i]);
+        i++;
+    }
+    if (data->philo)
+        free(data->philo);
+    if (data->forks)
+        free(data->forks);
+    if (data)
+        free(data);
+}
 
 void *philo_check(void *arg)
 {
-    int i = 0;
     t_data *data = (t_data *)arg;
     pthread_mutex_lock(&data->some_one_died_mutex);
-
+    
     while (1)
-    {
+    {int i = 0;
         while (i < data->number_of_philosophers)
         {
             if (get_time() - data->philo[i].last_meal_time > data->time_to_die)
             {
                 printf("%ld %d died-------------------------------|sss>\n", get_time() - data->start_time, data->philo[i].philo_id);
+                data->end = 1; 
                 pthread_mutex_unlock(&data->some_one_died_mutex);
-                return NULL;
+                pthread_exit(NULL);
             }
-            if (all_eaten(data))
+            if (all_eaten(data)) // Eğer tüm filozoflar yemeğini yediyse
             {
+                data->end = 1;
                 pthread_mutex_unlock(&data->some_one_died_mutex);
-                return NULL;
+                pthread_exit(NULL); // Kontrol thread'ini sonlandır
             }
             i++;
         }
         usleep(100);
     }
-    return NULL;
+    pthread_exit(NULL);
 }
 
 void *philo_routine(void *arg)
@@ -33,6 +72,8 @@ void *philo_routine(void *arg)
     t_philo *philo = (t_philo *)arg;
     while (1)
     {
+        if (philo->data->end)
+            break;
         if (philo->data->times_must_eat != -1 && philo->times_eaten >= philo->data->times_must_eat)
         {
             philo->finished = 1;
@@ -44,7 +85,7 @@ void *philo_routine(void *arg)
         philo_sleep(philo);
         printf("%ld %d is thinking\n", get_time() - philo->data->start_time, philo->philo_id);
     }
-    return NULL;
+    pthread_exit(NULL);
 }
 
 int start_threads(t_data *data)
@@ -56,6 +97,7 @@ int start_threads(t_data *data)
     if (pthread_create(&check_thread, NULL, philo_check, data))
     {
         printf("Error\n");
+        usleep(1000);
         return (1);
     }
     pthread_detach(check_thread);
@@ -96,11 +138,18 @@ void to_do_list(int argc, char *argv[], t_data *data)
         data->philo[i].data = data;
         data->philo[i].times_eaten = 0;
         data->philo[i].last_meal_time = get_time();
+        data->philo[i].finished = 0;
         i++;
     }
+    data->end = 0;
     pthread_mutex_init(&data->some_one_died_mutex, NULL);
-    pthread_mutex_init(&data->mutex, NULL);
     data->start_time = get_time();
+    if ( ft_atoi( argv[1]) ==1) 
+    {
+		usleep(ft_atoi(argv[2]) * 1000);
+		printf("%ld %d died-------------------------------|sss>\n", get_time() - data->start_time, data->philo[i].philo_id);  
+        exit(0); 
+	}
 }
 
 int main(int argc, char *argv[])
@@ -119,6 +168,8 @@ int main(int argc, char *argv[])
 
     pthread_mutex_lock(&data->some_one_died_mutex);
     pthread_mutex_unlock(&data->some_one_died_mutex);
+    join_threads(data);//-------------------------------//
+    clear_malloc(data);
 
     return 0;
 }

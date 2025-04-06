@@ -26,7 +26,7 @@ typedef struct s_data{
 	int time_to_sleep;
 	int times_must_eat;
 	int philo_number;
-	pthread_mutex_t mutex;
+	int end;
 	pthread_mutex_t some_one_died_mutex;
 	pthread_mutex_t *forks;
 	t_philo *philo;

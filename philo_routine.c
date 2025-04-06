@@ -11,6 +11,7 @@ void take_forks(t_philo *philo)
     pthread_mutex_lock(&philo->data->forks[philo->philo_id]);
     printf("%ld %d has taken a fork\n", get_time() - philo->data->start_time, philo->philo_id);
     pthread_mutex_lock(&philo->data->forks[(philo->philo_id + 1) % philo->data->number_of_philosophers]);
+
     printf("%ld %d has taken a fork\n", get_time() - philo->data->start_time, philo->philo_id);
 }
 

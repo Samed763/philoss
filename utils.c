@@ -56,6 +56,5 @@ int all_eaten(t_data *data)
 		}
 		i++;
 	}
-
 	return (1);
 }
