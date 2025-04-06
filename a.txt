@@ -1,30 +1,201 @@
-73 0 has taken a fork
-83 0 has taken a fork
-84 0 is eating
-143 2 has taken a fork
-143 2 has taken a fork
-143 2 is eating
-198 4 has taken a fork
-198 4 has taken a fork
-198 4 is eating
-246 6 has taken a fork
-285 6 has taken a fork
-285 6 is eating
-286 1 has taken a fork
-286 0 is sleeping
-343 1 has taken a fork
-343 1 is eating
-343 2 is sleeping
-343 3 has taken a fork
-398 3 has taken a fork
-398 3 is eating
-398 5 has taken a fork
-398 4 is sleeping
-401 5 died-------------------------------|sss>
+49 0 has taken a fork
+54 0 has taken a fork
+55 0 is eating
+73 0 is sleeping
+73 1 has taken a fork
+73 1 has taken a fork
+73 1 is eating
+89 0 is thinking
+89 0 has taken a fork
+90 0 has taken a fork
+90 0 is eating
+90 2 has taken a fork
+90 2 has taken a fork
+90 2 is eating
+90 1 is sleeping
+105 0 is sleeping
+105 1 is thinking
+105 1 has taken a fork
+106 1 has taken a fork
+106 1 is eating
+106 2 is sleeping
+106 3 has taken a fork
+106 3 has taken a fork
+106 3 is eating
+115 0 is thinking
+116 1 is sleeping
+116 2 is thinking
+116 2 has taken a fork
+116 3 is sleeping
+116 0 has taken a fork
+116 0 has taken a fork
+116 0 is eating
+116 2 has taken a fork
+116 2 is eating
+126 1 is thinking
+126 3 is thinking
+126 2 is sleeping
+126 0 is sleeping
+126 3 has taken a fork
+126 3 has taken a fork
+126 3 is eating
+126 1 has taken a fork
+126 1 has taken a fork
+126 1 is eating
+136 2 is thinking
+136 3 is sleeping
+137 0 is thinking
+137 0 has taken a fork
+137 0 has taken a fork
+137 0 is eating
+137 2 has taken a fork
+137 2 has taken a fork
+137 2 is eating
+137 1 is sleeping
+147 3 is thinking
+147 0 is sleeping
+147 1 is thinking
+147 1 has taken a fork
+147 1 has taken a fork
+147 1 is eating
+147 2 is sleeping
+147 3 has taken a fork
+147 3 has taken a fork
+147 3 is eating
+157 0 is thinking
+157 1 is sleeping
+157 2 is thinking
+157 2 has taken a fork
+157 3 is sleeping
+157 0 has taken a fork
+157 0 has taken a fork
+157 0 is eating
+157 2 has taken a fork
+157 2 is eating
+167 1 is thinking
+167 3 is thinking
+167 1 has taken a fork
+167 1 has taken a fork
+167 1 is eating
+167 0 is sleeping
+167 2 is sleeping
+167 3 has taken a fork
+167 3 has taken a fork
+167 3 is eating
+177 1 is sleeping
+177 0 is thinking
+177 2 is thinking
+177 2 has taken a fork
+178 2 has taken a fork
+178 2 is eating
+178 0 has taken a fork
+178 0 has taken a fork
+178 0 is eating
+178 3 is sleeping
+187 1 is thinking
+188 2 is sleeping
+188 0 is sleeping
+188 1 has taken a fork
+188 1 has taken a fork
+188 1 is eating
+188 3 is thinking
+188 3 has taken a fork
+188 3 has taken a fork
+188 3 is eating
+198 2 is thinking
+198 0 is thinking
+198 2 has taken a fork
+198 1 is sleeping
+198 2 has taken a fork
+198 2 is eating
+198 3 is sleeping
+198 0 has taken a fork
+198 0 has taken a fork
+198 0 is eating
+208 1 is thinking
+208 2 is sleeping
+208 3 is thinking
+208 3 has taken a fork
+208 3 has taken a fork
+208 3 is eating
+208 0 is sleeping
+208 1 has taken a fork
+208 1 has taken a fork
+208 1 is eating
+218 2 is thinking
+218 3 is sleeping
+218 0 is thinking
+218 0 has taken a fork
+218 0 has taken a fork
+218 0 is eating
+219 2 has taken a fork
+219 2 has taken a fork
+219 2 is eating
+219 1 is sleeping
+229 3 is thinking
+229 0 is sleeping
+229 3 has taken a fork
+229 3 has taken a fork
+229 3 is eating
+229 2 is sleeping
+229 1 is thinking
+229 1 has taken a fork
+229 1 has taken a fork
+229 1 is eating
+239 0 is thinking
+239 3 is sleeping
+239 0 has taken a fork
+239 2 is thinking
+239 0 has taken a fork
+239 0 is eating
+239 1 is sleeping
+239 2 has taken a fork
+239 2 has taken a fork
+239 2 is eating
+249 3 is thinking
+249 0 is sleeping
+249 1 is thinking
+249 1 has taken a fork
+249 1 has taken a fork
+249 1 is eating
+249 2 is sleeping
+249 3 has taken a fork
+250 3 has taken a fork
+250 3 is eating
+259 0 is thinking
+260 1 is sleeping
+260 2 is thinking
+260 2 has taken a fork
+260 2 has taken a fork
+260 2 is eating
+260 3 is sleeping
+260 0 has taken a fork
+260 0 has taken a fork
+260 0 is eating
+270 1 is thinking
+270 2 is sleeping
+270 3 is thinking
+270 3 has taken a fork
+270 3 has taken a fork
+270 3 is eating
+270 0 is sleeping
+270 1 has taken a fork
+270 1 has taken a fork
+270 1 is eating
+280 2 is thinking
+280 3 is sleeping
+280 0 is thinking
+283 1 is sleeping
+283 2 has taken a fork
+283 2 has taken a fork
+283 2 is eating
+313 1 is thinking
+313 3 is thinking
+313 2 is sleeping
+313 3 has taken a fork
+313 3 has taken a fork
+313 3 is eating
 Thread 0 is detached or already finished.
 Thread 1 is detached or already finished.
 Thread 2 is detached or already finished.
 Thread 3 is detached or already finished.
-Thread 4 is detached or already finished.
-Thread 5 is detached or already finished.
-Thread 6 is detached or already finished.

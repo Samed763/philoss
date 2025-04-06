@@ -165,8 +165,9 @@ int main(int argc, char *argv[])
 
     to_do_list(argc, argv, data);
     start_threads(data);
-
+    
     pthread_mutex_lock(&data->some_one_died_mutex);
+    //sleep(2);
     pthread_mutex_unlock(&data->some_one_died_mutex);
     join_threads(data);//-------------------------------//
     clear_malloc(data);
